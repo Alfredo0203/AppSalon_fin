@@ -90,11 +90,11 @@ function cambiarSeccion() {
 
 
 async function mostrarServicios() {
-    try {
+   
         const url = 'http://localhost/PHP/AppSalon_fin/services.php'
         const resultado = await fetch(url);
         const db = await resultado.json();
-
+        console.log(db);
       //  const { servicios } = db;
 
        // Generar el HTML
@@ -128,9 +128,7 @@ async function mostrarServicios() {
             // Inyectarlo en el HTML
             document.querySelector('#servicios').appendChild(servicioDiv);
        } )
-    } catch (error) {
-        console.log(error);
-    }
+    
 }
 
 
