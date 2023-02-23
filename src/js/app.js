@@ -91,30 +91,31 @@ function cambiarSeccion() {
 
 async function mostrarServicios() {
     try {
-        const resultado = await fetch('./servicios.json');
+        const url = 'http://localhost/PHP/AppSalon_fin/services.php'
+        const resultado = await fetch(url);
         const db = await resultado.json();
 
-        const { servicios } = db;
+      //  const { servicios } = db;
 
        // Generar el HTML
-       servicios.forEach( servicio => {
-            const { id, nombre, precio } = servicio;
+       db.forEach( servicio => {
+            const { idServicio, Nombre, Precio } = servicio;
 
             // DOM Scripting
             // Generar nombre de servicio
             const nombreServicio = document.createElement('P');
-            nombreServicio.textContent = nombre;
+            nombreServicio.textContent = Nombre;
             nombreServicio.classList.add('nombre-servicio');
 
             // Generar el precio del servicio
             const precioServicio = document.createElement('P');
-            precioServicio.textContent = `$ ${precio}`;
+            precioServicio.textContent = `$ ${Precio}`;
             precioServicio.classList.add('precio-servicio');
 
             // Generar div contenedor de servicio
             const servicioDiv = document.createElement('DIV');
             servicioDiv.classList.add('servicio');
-            servicioDiv.dataset.idServicio = id;
+            servicioDiv.dataset.idServicio = idServicio;
 
             // Selecciona un servicio para la cita
             servicioDiv.onclick = seleccionarServicio;
